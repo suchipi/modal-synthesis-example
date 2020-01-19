@@ -1,7 +1,7 @@
 /**
- * Calculates the Q value for a bandpass Biquad filter that achieves the given decay decay rate.
+ * Calculates the Q value for a bandpass Biquad filter that achieves the given decay rate.
  * @param frequency The frequency property of the Biquad filter
- * @param decay How long in seconds it takes for this mode to decrease in volume by 60db
+ * @param decay The desired duration in seconds that it takes for the sound to decrease in volume by 60db
  * @param audioContext The audio context to measure the sample rate from
  */
 function qFromdecay(
