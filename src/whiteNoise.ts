@@ -1,3 +1,8 @@
+/**
+ * Create a buffer of generated white noise, of the specified length.
+ * @param length
+ * @param audioContext
+ */
 export function makeWhiteNoiseBuffer(
   length: number,
   audioContext: AudioContext
@@ -12,6 +17,11 @@ export function makeWhiteNoiseBuffer(
   return buffer;
 }
 
+/**
+ * Creates an AudioNode that plays the input AudioBuffer.
+ * @param buffer The input AudioBuffer
+ * @param audioContext the AudioContext used to create the AudioBufferSourceNode
+ */
 export function makeNodeFromBuffer(
   buffer: AudioBuffer,
   audioContext: AudioContext

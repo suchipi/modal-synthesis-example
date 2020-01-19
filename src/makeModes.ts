@@ -54,11 +54,11 @@ function makeMode(
  * Create a pair of input/output AudioNodes that filters an input excitation (for example, a short
  * burst of white noise, or residue noise gathered from a recording) into
  * the described components of a modal sound.
- * @param data An array of objects with frequency/amplitude/decay properties that describe the mode.
+ * @param data An array of objects with frequency/amplitude/decay properties that describe the modes.
  * - frequency: The center frequency of the mode in Hz
  * - amplitude: A number from 0-1; how loud this particular mode is
  * - decay: How long in seconds it takes for this mode to decrease in volume by 60db
- * @param audioContext The audioContext used to create nodes.
+ * @param audioContext The AudioContext used to create nodes.
  */
 export default function makeModes(
   data: Array<{ frequency: number; amplitude: number; decay: number }>,
