@@ -7,7 +7,7 @@
 function qFromdecay(
   frequency: number,
   decay: number,
-  audioContext: AudioContext
+  audioContext: AudioContext,
 ) {
   const rad = Math.pow(10, -3 / (decay * audioContext.sampleRate));
   const BW = Math.log(rad) / -Math.PI / (1 / audioContext.sampleRate);
@@ -28,7 +28,7 @@ function makeMode(
   frequency: number,
   amplitude: number,
   decay: number,
-  audioContext: AudioContext
+  audioContext: AudioContext,
 ) {
   const biquadFilter = audioContext.createBiquadFilter();
   biquadFilter.type = "bandpass";
@@ -62,10 +62,10 @@ function makeMode(
  */
 export default function makeModes(
   data: Array<{ frequency: number; amplitude: number; decay: number }>,
-  audioContext: AudioContext
+  audioContext: AudioContext,
 ) {
   const modes = data.map((datum) =>
-    makeMode(datum.frequency, datum.amplitude, datum.decay, audioContext)
+    makeMode(datum.frequency, datum.amplitude, datum.decay, audioContext),
   );
 
   const input = audioContext.createGain();

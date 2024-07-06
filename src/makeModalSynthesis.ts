@@ -12,7 +12,7 @@ import { makeWhiteNoiseBuffer, makeNodeFromBuffer } from "./whiteNoise";
  */
 export default function makeModalSynthesis(
   data: Array<{ frequency: number; amplitude: number; decay: number }>,
-  audioContext: AudioContext
+  audioContext: AudioContext,
 ) {
   const maxDecay = data.reduce((prev, datum) => Math.max(prev, datum.decay), 0);
 
@@ -27,7 +27,7 @@ export default function makeModalSynthesis(
     // if we did, that could make an ugly pop sound, like the static-y pop
     // sound you hear when you plug in or unplug your headphones.
     maxDecay * audioContext.sampleRate + 5,
-    audioContext
+    audioContext,
   );
 
   /**
@@ -119,22 +119,22 @@ export default function makeModalSynthesis(
                 typeof frequencyMultiplier === "number"
                   ? datum.frequency * frequencyMultiplier
                   : typeof frequencyMultiplier === "function"
-                  ? datum.frequency * frequencyMultiplier(index)
-                  : datum.frequency,
+                    ? datum.frequency * frequencyMultiplier(index)
+                    : datum.frequency,
               amplitude:
                 typeof amplitudeMultiplier === "number"
                   ? datum.amplitude * amplitudeMultiplier
                   : typeof amplitudeMultiplier === "function"
-                  ? datum.amplitude * amplitudeMultiplier(index)
-                  : datum.amplitude,
+                    ? datum.amplitude * amplitudeMultiplier(index)
+                    : datum.amplitude,
               decay:
                 typeof decayMultiplier === "number"
                   ? datum.decay * decayMultiplier
                   : typeof decayMultiplier === "function"
-                  ? datum.decay * decayMultiplier(index)
-                  : datum.decay,
+                    ? datum.decay * decayMultiplier(index)
+                    : datum.decay,
             })),
-            audioContext
+            audioContext,
           );
           toDisconnect.push(modes);
 
@@ -152,15 +152,18 @@ export default function makeModalSynthesis(
             // collection purposes, and is only intended to be used after
             // the sound has already played to completion, so super
             // accurate timing isn't important in that case.
-            setTimeout(() => {
-              this.disconnect();
+            setTimeout(
+              () => {
+                this.disconnect();
 
-              // maxDecay is in seconds. I'm adding an extra couple ms here
-              // just to be extra safe we don't disconnect anything while sound
-              // is still playing, since that could make an ugly pop sound,
-              // like the static-y pop sound you hear when you plug in or
-              // unplug your headphones.
-            }, maxDecay * 1000 + 1);
+                // maxDecay is in seconds. I'm adding an extra couple ms here
+                // just to be extra safe we don't disconnect anything while sound
+                // is still playing, since that could make an ugly pop sound,
+                // like the static-y pop sound you hear when you plug in or
+                // unplug your headphones.
+              },
+              maxDecay * 1000 + 1,
+            );
           }
         },
 

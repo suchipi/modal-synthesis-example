@@ -3,7 +3,7 @@ import makeModalSynthesis from "./makeModalSynthesis";
 
 export default function makeTestUI(
   modalSynthesis: ReturnType<typeof makeModalSynthesis>,
-  audioContext: AudioContext
+  audioContext: AudioContext,
 ) {
   const random = (min: number, max: number) =>
     Math.random() * (max - min) + min;
@@ -14,7 +14,7 @@ export default function makeTestUI(
     min: number,
     max: number,
     step: number,
-    value: number
+    value: number,
   ) {
     // We're going to make a UI laid out like this:
     // -------O-   Slider Label   0.5
@@ -100,7 +100,7 @@ export default function makeTestUI(
   const decaySlider = makeSlider("Decay Multiplier", 0.05, 10, 0.05, 1);
   const decayVarianceSlider = makeSlider("Decay Variance", 0, 1, 0.01, 0.3);
 
-  let synth: ReturnType<typeof modalSynthesis["makeModel"]>;
+  let synth: ReturnType<(typeof modalSynthesis)["makeModel"]>;
   function initSynth() {
     if (synth) {
       synth.disconnect();
@@ -112,19 +112,19 @@ export default function makeTestUI(
           (1 - Number(ampVarianceSlider.inputEl.value) / 2) *
             Number(ampSlider.inputEl.value),
           (1 + Number(ampVarianceSlider.inputEl.value) / 2) *
-            Number(ampSlider.inputEl.value)
+            Number(ampSlider.inputEl.value),
         ),
       frequencyMultiplier: () =>
         Number(freqSlider.inputEl.value) *
         random(
           1 - Number(freqVarianceSlider.inputEl.value) / 2,
-          1 + Number(freqVarianceSlider.inputEl.value) / 2
+          1 + Number(freqVarianceSlider.inputEl.value) / 2,
         ),
       decayMultiplier: () =>
         Number(decaySlider.inputEl.value) *
         random(
           1 - Number(decayVarianceSlider.inputEl.value) / 2,
-          1 + Number(decayVarianceSlider.inputEl.value) / 2
+          1 + Number(decayVarianceSlider.inputEl.value) / 2,
         ),
     });
     synth.outputNode.connect(audioContext.destination);
@@ -150,7 +150,7 @@ export default function makeTestUI(
       "input",
       throttle(() => {
         hitButton.click();
-      }, 50)
+      }, 50),
     );
   });
 

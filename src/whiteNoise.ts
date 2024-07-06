@@ -5,7 +5,7 @@
  */
 export function makeWhiteNoiseBuffer(
   length: number,
-  audioContext: AudioContext
+  audioContext: AudioContext,
 ) {
   const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
 
@@ -24,7 +24,7 @@ export function makeWhiteNoiseBuffer(
  */
 export function makeNodeFromBuffer(
   buffer: AudioBuffer,
-  audioContext: AudioContext
+  audioContext: AudioContext,
 ) {
   const sourceNode = audioContext.createBufferSource();
   sourceNode.buffer = buffer;
