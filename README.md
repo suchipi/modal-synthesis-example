@@ -7,8 +7,8 @@ This code uses the Web Audio API to create a synthesizer for a modal sound. It's
 ## Usage
 
 ```
-yarn install
-yarn start
+npm install
+npm start
 ```
 
 Then open <http://localhost:1234/> in a web browser.
