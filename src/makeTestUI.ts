@@ -91,7 +91,7 @@ export default function makeTestUI(
    */
 
   // First, the sliders:
-  const ampSlider = makeSlider("Amplitude Multiplier", 0, 5, 0.01, 1);
+  const ampSlider = makeSlider("Amplitude Multiplier", 0, 15, 0.01, 1);
   const ampVarianceSlider = makeSlider("Amplitude Variance", 0, 1, 0.01, 1);
 
   const freqSlider = makeSlider("Frequency Multiplier", 0.01, 2.5, 0.001, 1);
